@@ -49,7 +49,6 @@ const nav = [
 const figures = [
   { value: "+20", label: "años de experiencia" },
   { value: "+300", label: "profesionales en estructuras gestionadas" },
-  { value: "4", label: "centros gestionados simultáneamente" },
   { value: "+7 M€", label: "cartera anual gestionada" },
 ];
 
@@ -188,8 +187,8 @@ function Landing() {
         </section>
 
         {/* SOBRE MÍ */}
-        <section id="sobre-mi" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <div className="grid gap-14 md:grid-cols-[0.8fr_1.2fr]">
+        <section id="sobre-mi" className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="section-label">Perfil</p>
               <h2 className="mt-4 text-3xl text-primary md:text-5xl">Sobre mí</h2>
@@ -258,9 +257,9 @@ function Landing() {
         </section>
 
         {/* LIDERAZGO */}
-        <section className="bg-primary text-primary-foreground">
+        <section className="bg-sage">
           <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-            <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary-foreground/60">
+            <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary/60">
               Liderazgo
             </p>
             <h2 className="mt-4 text-3xl md:text-5xl">Mi forma de liderar</h2>
