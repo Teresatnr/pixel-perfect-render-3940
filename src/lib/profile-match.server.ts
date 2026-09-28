@@ -72,7 +72,7 @@ Reglas:
 
 Perfil de Teresa:
 ${PERFIL}`,
-      },
+    messages: [
       {
         role: "user",
         content: `Perfil o reto que busca el visitante:\n\n${consulta}`,
