@@ -49,7 +49,6 @@ const nav = [
 const figures = [
   { value: "+20", label: "años de experiencia" },
   { value: "+300", label: "profesionales en estructuras gestionadas" },
-  { value: "4", label: "centros gestionados simultáneamente" },
   { value: "+7 M€", label: "cartera anual gestionada" },
 ];
 
@@ -188,8 +187,8 @@ function Landing() {
         </section>
 
         {/* SOBRE MÍ */}
-        <section id="sobre-mi" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <div className="grid gap-14 md:grid-cols-[0.8fr_1.2fr]">
+        <section id="sobre-mi" className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="section-label">Perfil</p>
               <h2 className="mt-4 text-3xl text-primary md:text-5xl">Sobre mí</h2>
@@ -258,22 +257,22 @@ function Landing() {
         </section>
 
         {/* LIDERAZGO */}
-        <section className="bg-primary text-primary-foreground">
+        <section className="bg-sage">
           <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-            <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary-foreground/60">
+            <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary/60">
               Liderazgo
             </p>
             <h2 className="mt-4 text-3xl md:text-5xl">Mi forma de liderar</h2>
-            <p className="mt-8 max-w-3xl font-display text-2xl leading-snug italic text-primary-foreground/90 md:text-3xl">
+            <p className="mt-8 max-w-3xl text-2xl font-light leading-snug text-primary/80 md:text-3xl">
               «Para mí, liderar no consiste únicamente en dirigir. Significa escuchar, generar
               confianza, asumir responsabilidades y conseguir que diferentes personas trabajen
               alineadas hacia un objetivo común.»
             </p>
             <div className="mt-14 grid gap-10 sm:grid-cols-3">
               {pillars.map((p) => (
-                <div key={p.title} className="border-t border-primary-foreground/20 pt-6">
-                  <h3 className="text-xl text-primary-foreground">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">
+                <div key={p.title} className="border-t border-primary/20 pt-6">
+                  <h3 className="text-xl text-primary">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-primary/70">
                     {p.text}
                   </p>
                 </div>
@@ -317,7 +316,7 @@ function Landing() {
         <section id="contacto" className="border-t border-border bg-sand">
           <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-32">
             <p className="section-label">Contacto</p>
-            <h2 className="mt-4 text-4xl text-primary md:text-6xl">Hablemos</h2>
+            <h2 className="mt-4 text-3xl font-light text-primary/90 md:text-4xl">Hablemos</h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
               Abierta a conversar, compartir experiencias y conocer nuevos proyectos profesionales.
             </p>
