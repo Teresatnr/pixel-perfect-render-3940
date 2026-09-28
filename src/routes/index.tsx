@@ -385,7 +385,7 @@ function Landing() {
               Mi forma de liderar
             </h2>
             <p className="mt-6 max-w-3xl text-xl font-light leading-snug text-primary/80 md:mt-8 md:text-3xl">
-              «Para mí, liderar no consiste únicamente en dirigir. Significa escuchar, generar
+              «Liderar, para mí, no consiste únicamente en dirigir. Significa escuchar, generar
               confianza, asumir responsabilidades y conseguir que diferentes personas trabajen
               alineadas hacia un objetivo común.»
             </p>
