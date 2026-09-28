@@ -48,10 +48,8 @@ const nav = [
 
 const figures = [
   { value: "+20", label: "años de experiencia" },
-  { value: "≈ 5 M€", label: "volumen anual gestionado" },
-  { value: "+200", label: "profesionales" },
-  { value: "4", label: "centros gestionados simultáneamente" },
   { value: "+300", label: "profesionales en estructuras gestionadas" },
+  { value: "4", label: "centros gestionados simultáneamente" },
   { value: "+7 M€", label: "cartera anual gestionada" },
 ];
 
@@ -159,11 +157,13 @@ function Landing() {
         {/* HERO */}
         <section id="inicio" className="border-b border-border bg-sand">
           <div className="mx-auto max-w-6xl px-6 py-28 md:py-40">
-            <p className="section-label">Senior Facility Manager</p>
-            <h1 className="mt-6 max-w-4xl text-4xl leading-[1.08] text-primary md:text-7xl">
+            <p className="text-xl leading-tight font-medium uppercase tracking-[0.14em] text-accent md:text-2xl">
+              Senior Facility Manager
+            </p>
+            <h1 className="mt-4 max-w-4xl text-2xl text-primary md:text-4xl">
               Teresa Nieto Ramírez
             </h1>
-            <p className="mt-8 max-w-3xl text-2xl italic leading-snug text-ink md:text-4xl font-display">
+            <p className="mt-10 max-w-3xl text-2xl font-light leading-snug text-ink md:text-4xl">
               «Integro equipos para conseguir objetivos globales.»
             </p>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -209,7 +209,7 @@ function Landing() {
                 Mi forma de liderar combina exigencia, cercanía, escucha activa y orientación a
                 resultados.
               </p>
-              <blockquote className="border-l-2 border-accent pl-6 font-display text-2xl italic leading-snug text-primary md:text-3xl">
+              <blockquote className="border-l-2 border-accent pl-6 text-2xl font-light leading-snug text-primary md:text-3xl">
                 «Creo en un liderazgo capaz de alinear personas, negocio y objetivos.»
               </blockquote>
             </div>
