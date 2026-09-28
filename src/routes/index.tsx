@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import {
   Users,
   ClipboardList,
@@ -14,7 +15,11 @@ import {
   Phone,
   Mail,
   Linkedin,
+  ChevronDown,
+  Loader2,
 } from "lucide-react";
+
+import { generarSintesis } from "@/lib/profile-match.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,6 +55,7 @@ const figures = [
   { value: "+20", label: "años de experiencia" },
   { value: "+300", label: "profesionales en estructuras gestionadas" },
   { value: "+7 M€", label: "cartera anual gestionada" },
+  { value: "Multisite", label: "operaciones en entornos hospitalarios y organizaciones complejas" },
 ];
 
 const skills = [
@@ -101,13 +107,94 @@ const pillars = [
   { title: "Equipo", text: "Colaboración, comunicación y visión compartida." },
 ];
 
+function PerfilAMedida() {
+  const ejecutar = useServerFn(generarSintesis);
+  const [consulta, setConsulta] = useState("");
+  const [sintesis, setSintesis] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [cargando, setCargando] = useState(false);
+
+  const enviar = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (consulta.trim().length < 10 || cargando) return;
+    setCargando(true);
+    setError(null);
+    setSintesis(null);
+    try {
+      const res = await ejecutar({ data: { consulta: consulta.trim() } });
+      setSintesis(res.sintesis);
+    } catch {
+      setError("No se ha podido generar la síntesis ahora mismo. Inténtalo de nuevo en un momento.");
+    } finally {
+      setCargando(false);
+    }
+  };
+
+  return (
+    <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
+      <div>
+        <p className="section-label">Perfil a medida</p>
+        <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
+          ¿Qué perfil estás buscando?
+        </h2>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+          Describe la posición o el reto que tienes sobre la mesa y recibirás una síntesis de la
+          experiencia de Teresa relevante para ese caso.
+        </p>
+      </div>
+      <div>
+        <form onSubmit={enviar} className="space-y-4">
+          <textarea
+            value={consulta}
+            onChange={(e) => setConsulta(e.target.value)}
+            rows={4}
+            maxLength={800}
+            placeholder="Ej.: buscamos responsable para un contrato hospitalario multisite, con negociación sindical y control de P&L."
+            className="w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent md:text-base"
+          />
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="submit"
+              disabled={cargando || consulta.trim().length < 10}
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-40"
+            >
+              {cargando && <Loader2 className="size-4 animate-spin" strokeWidth={1.5} />}
+              {cargando ? "Preparando síntesis…" : "Ver encaje"}
+            </button>
+            <span className="text-xs text-muted-foreground">
+              Generado automáticamente a partir de la trayectoria de Teresa.
+            </span>
+          </div>
+        </form>
+
+        {error && <p className="mt-6 text-sm text-destructive">{error}</p>}
+
+        {sintesis && (
+          <div className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6 text-sm leading-relaxed text-muted-foreground md:p-8 md:text-base">
+            {sintesis.split(/\n+/).map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            <a
+              href="#contacto"
+              className="inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
+            >
+              Hablar con Teresa
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Landing() {
   const [open, setOpen] = useState(false);
+  const [verCifras, setVerCifras] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-6">
           <a href="#inicio" className="text-sm font-medium tracking-[0.18em] uppercase text-primary">
             Teresa Nieto
           </a>
@@ -137,7 +224,7 @@ function Landing() {
           </button>
         </div>
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-border bg-background px-6 py-4 md:hidden">
+          <nav className="flex flex-col gap-1 border-t border-border bg-background px-5 py-4 md:hidden">
             {nav.map((item) => (
               <a
                 key={item.href}
@@ -155,21 +242,21 @@ function Landing() {
       <main className="pt-16">
         {/* HERO */}
         <section id="inicio" className="border-b border-border bg-sand">
-          <div className="mx-auto max-w-6xl px-6 py-28 md:py-40">
-            <p className="text-xl leading-tight font-medium uppercase tracking-[0.14em] text-accent md:text-2xl">
+          <div className="mx-auto max-w-6xl px-5 py-20 md:px-6 md:py-40">
+            <p className="text-lg leading-tight font-medium uppercase tracking-[0.12em] text-accent sm:text-xl md:text-2xl">
               Senior Facility Manager
             </p>
-            <h1 className="mt-4 max-w-4xl text-2xl text-primary md:text-4xl">
+            <h1 className="mt-3 max-w-4xl text-xl text-primary sm:text-2xl md:mt-4 md:text-4xl">
               Teresa Nieto Ramírez
             </h1>
-            <p className="mt-10 max-w-3xl text-2xl font-light leading-snug text-ink md:text-4xl">
+            <p className="mt-8 max-w-3xl text-[1.6rem] font-light leading-snug text-ink sm:text-3xl md:mt-10 md:text-4xl">
               «Integro equipos para conseguir objetivos globales.»
             </p>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mt-5 max-w-2xl text-[0.95rem] leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
               Más de 20 años liderando operaciones, equipos y contratos complejos, combinando
               resultados, personas y visión de negocio.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 md:mt-10">
               <a
                 href="#sobre-mi"
                 className="rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
@@ -187,13 +274,15 @@ function Landing() {
         </section>
 
         {/* SOBRE MÍ */}
-        <section id="sobre-mi" className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+        <section id="sobre-mi" className="mx-auto max-w-6xl px-5 py-14 md:px-6 md:py-24">
+          <div className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:gap-10">
             <div>
               <p className="section-label">Perfil</p>
-              <h2 className="mt-4 text-3xl text-primary md:text-5xl">Sobre mí</h2>
+              <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
+                Sobre mí
+              </h2>
             </div>
-            <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <div className="space-y-5 text-[0.95rem] leading-relaxed text-muted-foreground md:space-y-6 md:text-lg">
               <p>
                 Soy una profesional tenaz, comprometida y con un alto grado de empatía. A lo largo
                 de mi trayectoria he aprendido que los mejores resultados se consiguen cuando las
@@ -208,7 +297,7 @@ function Landing() {
                 Mi forma de liderar combina exigencia, cercanía, escucha activa y orientación a
                 resultados.
               </p>
-              <blockquote className="border-l-2 border-accent pl-6 text-2xl font-light leading-snug text-primary md:text-3xl">
+              <blockquote className="border-l-2 border-accent pl-5 text-xl font-light leading-snug text-primary md:pl-6 md:text-3xl">
                 «Creo en un liderazgo capaz de alinear personas, negocio y objetivos.»
               </blockquote>
             </div>
@@ -217,20 +306,37 @@ function Landing() {
 
         {/* EXPERIENCIA */}
         <section id="experiencia" className="border-y border-border bg-secondary">
-          <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
             <p className="section-label">Impacto</p>
-            <h2 className="mt-4 max-w-2xl text-3xl text-primary md:text-5xl">
+            <h2 className="mt-3 max-w-2xl text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
               Experiencia que se traduce en resultados
             </h2>
-            <div className="mt-14 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-              {figures.map((f) => (
-                <div key={f.label} className="bg-background p-8">
-                  <p className="font-display text-4xl text-primary md:text-5xl">{f.value}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.label}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-10 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
+
+            <button
+              type="button"
+              onClick={() => setVerCifras((v) => !v)}
+              aria-expanded={verCifras}
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-primary/25 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/5 md:mt-10"
+            >
+              {verCifras ? "Ocultar cifras" : "Ver cifras de impacto"}
+              <ChevronDown
+                className={`size-4 transition-transform ${verCifras ? "rotate-180" : ""}`}
+                strokeWidth={1.5}
+              />
+            </button>
+
+            {verCifras && (
+              <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4 md:mt-10">
+                {figures.map((f) => (
+                  <div key={f.label} className="bg-background p-6 md:p-8">
+                    <p className="font-display text-3xl text-primary md:text-5xl">{f.value}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.label}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground md:mt-10 md:text-base">
               Experiencia en la gestión integral de operaciones multisite, cuentas de explotación,
               equipos numerosos, relaciones laborales, clientes estratégicos, proveedores,
               renovaciones contractuales y procesos de oferta.
@@ -239,42 +345,55 @@ function Landing() {
         </section>
 
         {/* HABILIDADES */}
-        <section id="habilidades" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <section id="habilidades" className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
           <p className="section-label">Habilidades</p>
-          <h2 className="mt-4 text-3xl text-primary md:text-5xl">Lo que aporto</h2>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
+            Lo que aporto
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-14 md:gap-6">
             {skills.map((s) => (
               <div
                 key={s.title}
-                className="rounded-xl border border-border bg-card p-7 transition-colors hover:border-accent/50"
+                className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-accent/50 md:p-7"
               >
                 <s.icon className="size-5 text-accent" strokeWidth={1.5} />
-                <h3 className="mt-5 text-lg leading-snug text-primary">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                <h3 className="mt-4 text-base leading-snug text-primary md:mt-5 md:text-lg">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:mt-3">
+                  {s.text}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
+        {/* PERFIL A MEDIDA */}
+        <section id="perfil-a-medida" className="border-y border-border bg-sand">
+          <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-28">
+            <PerfilAMedida />
+          </div>
+        </section>
+
         {/* LIDERAZGO */}
-        <section className="bg-sage">
-          <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <section className="bg-blush">
+          <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
             <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary/60">
               Liderazgo
             </p>
-            <h2 className="mt-4 text-3xl md:text-5xl">Mi forma de liderar</h2>
-            <p className="mt-8 max-w-3xl text-2xl font-light leading-snug text-primary/80 md:text-3xl">
+            <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
+              Mi forma de liderar
+            </h2>
+            <p className="mt-6 max-w-3xl text-xl font-light leading-snug text-primary/80 md:mt-8 md:text-3xl">
               «Para mí, liderar no consiste únicamente en dirigir. Significa escuchar, generar
               confianza, asumir responsabilidades y conseguir que diferentes personas trabajen
               alineadas hacia un objetivo común.»
             </p>
-            <div className="mt-14 grid gap-10 sm:grid-cols-3">
+            <div className="mt-10 grid gap-8 sm:grid-cols-3 md:mt-14 md:gap-10">
               {pillars.map((p) => (
-                <div key={p.title} className="border-t border-primary/20 pt-6">
-                  <h3 className="text-xl text-primary">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-primary/70">
-                    {p.text}
-                  </p>
+                <div key={p.title} className="border-t border-primary/20 pt-5 md:pt-6">
+                  <h3 className="text-lg text-primary md:text-xl">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-primary/70">{p.text}</p>
                 </div>
               ))}
             </div>
@@ -282,15 +401,15 @@ function Landing() {
         </section>
 
         {/* TRAYECTORIA */}
-        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <div className="grid gap-14 md:grid-cols-[0.8fr_1.2fr]">
+        <section className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
+          <div className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
             <div>
               <p className="section-label">Trayectoria</p>
-              <h2 className="mt-4 text-3xl leading-tight text-primary md:text-5xl">
+              <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
                 Una trayectoria construida sobre la gestión
               </h2>
             </div>
-            <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <div className="space-y-5 text-[0.95rem] leading-relaxed text-muted-foreground md:space-y-6 md:text-lg">
               <p>
                 Más de dos décadas desarrollando mi carrera en Ferrovial Servicios / Serveo,
                 gestionando contratos para grandes organizaciones públicas y privadas y asumiendo
@@ -305,7 +424,7 @@ function Landing() {
                 organizaciones complejas, donde calidad, eficiencia, personas y continuidad del
                 servicio deben funcionar de manera coordinada.
               </p>
-              <p className="border-t border-border pt-6 text-sm text-muted-foreground/80">
+              <p className="border-t border-border pt-5 text-sm text-muted-foreground/80 md:pt-6">
                 Formación en Relaciones Laborales — Universidad Complutense de Madrid
               </p>
             </div>
@@ -314,13 +433,15 @@ function Landing() {
 
         {/* CONTACTO */}
         <section id="contacto" className="border-t border-border bg-sand">
-          <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-32">
+          <div className="mx-auto max-w-6xl px-5 py-16 text-center md:px-6 md:py-32">
             <p className="section-label">Contacto</p>
-            <h2 className="mt-4 text-3xl font-light text-primary/90 md:text-4xl">Hablemos</h2>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Abierta a conversar, compartir experiencias y conocer nuevos proyectos profesionales.
+            <h2 className="mt-3 text-2xl font-light text-primary/90 md:mt-4 md:text-4xl">
+              Hablemos
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
+              Encantada de intercambiar impresiones sobre proyectos y retos de gestión.
             </p>
-            <div className="mt-10 flex flex-col items-center gap-3 text-base text-primary">
+            <div className="mt-8 flex flex-col items-center gap-3 text-[0.95rem] text-primary md:mt-10 md:text-base">
               <a href="tel:+34651300652" className="flex items-center gap-2 hover:text-accent">
                 <Phone className="size-4" strokeWidth={1.5} /> 651 300 652
               </a>
@@ -331,7 +452,7 @@ function Landing() {
                 <Mail className="size-4" strokeWidth={1.5} /> terenira@hotmail.com
               </a>
             </div>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 md:mt-10">
               <a
                 href="mailto:terenira@hotmail.com"
                 className="rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
@@ -358,14 +479,14 @@ function Landing() {
       </main>
 
       <footer className="border-t border-border py-8">
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="px-5 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} Teresa Nieto Ramírez · Senior Facility Manager
         </p>
       </footer>
 
       <a
         href="#contacto"
-        className="fixed bottom-6 right-6 z-50 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg transition-opacity hover:opacity-90 md:hidden"
+        className="fixed bottom-5 right-5 z-50 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg transition-opacity hover:opacity-90 md:hidden"
       >
         Contactar
       </a>
