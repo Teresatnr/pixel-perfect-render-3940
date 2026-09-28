@@ -17,6 +17,7 @@ import {
   Linkedin,
   ChevronDown,
   Loader2,
+  MessageCircle,
 } from "lucide-react";
 
 import { generarSintesis } from "@/lib/profile-match.functions";
@@ -341,6 +342,23 @@ function Landing() {
               equipos numerosos, relaciones laborales, clientes estratégicos, proveedores,
               renovaciones contractuales y procesos de oferta.
             </p>
+
+            <div className="mt-8 flex flex-wrap gap-3 md:mt-10">
+              <a
+                href="https://wa.me/34651300652"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                <MessageCircle className="size-4" strokeWidth={1.5} /> WhatsApp
+              </a>
+              <a
+                href="mailto:terenira@hotmail.com"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/25 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/5"
+              >
+                <Mail className="size-4" strokeWidth={1.5} /> Enviar email
+              </a>
+            </div>
           </div>
         </section>
 
