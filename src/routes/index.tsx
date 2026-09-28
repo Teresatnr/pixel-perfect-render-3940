@@ -385,9 +385,8 @@ function Landing() {
               Mi forma de liderar
             </h2>
             <p className="mt-6 max-w-3xl text-xl font-light leading-snug text-primary/80 md:mt-8 md:text-3xl">
-              «Liderar, para mí, no consiste únicamente en dirigir. Significa escuchar, generar
-              confianza, asumir responsabilidades y conseguir que diferentes personas trabajen
-              alineadas hacia un objetivo común.»
+              «Liderar es, para mí, escuchar, generar confianza, asumir responsabilidades y
+              conseguir que diferentes personas trabajen alineadas hacia un objetivo común.»
             </p>
             <div className="mt-10 grid gap-8 sm:grid-cols-3 md:mt-14 md:gap-10">
               {pillars.map((p) => (
