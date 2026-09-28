@@ -32,6 +32,7 @@
   --color-ring: var(--ring);
   --color-sand: var(--sand);
   --color-sage: var(--sage);
+  --color-blush: var(--blush);
   --color-ink: var(--ink);
   --font-display: "Instrument Serif", Georgia, serif;
   --font-sans: "Work Sans", system-ui, sans-serif;
@@ -60,6 +61,7 @@
   --ring: oklch(0.62 0.075 190);
   --sand: oklch(0.975 0.008 90);
   --sage: oklch(0.92 0.04 148);
+  --blush: oklch(0.955 0.018 20);
   --ink: oklch(0.24 0.04 240);
 }
 
