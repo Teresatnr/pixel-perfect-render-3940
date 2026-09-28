@@ -17,6 +17,7 @@ import {
   Linkedin,
   ChevronDown,
   Loader2,
+  MessageCircle,
 } from "lucide-react";
 
 import { generarSintesis } from "@/lib/profile-match.functions";
