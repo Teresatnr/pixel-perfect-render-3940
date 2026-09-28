@@ -31,6 +31,7 @@ escucha activa y orientación a resultados.
 `;
 
 export async function generarSintesisPerfil(consulta: string, signal?: AbortSignal) {
+  void 0;
   const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) {
     throw new Error("La función de síntesis no está configurada en este momento.");

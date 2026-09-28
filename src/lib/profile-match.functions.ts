@@ -7,8 +7,8 @@ const schema = z.object({
 
 export const generarSintesis = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
-  .handler(async ({ data, signal }) => {
+  .handler(async ({ data }) => {
     const { generarSintesisPerfil } = await import("./profile-match.server");
-    const sintesis = await generarSintesisPerfil(data.consulta, signal);
+    const sintesis = await generarSintesisPerfil(data.consulta);
     return { sintesis };
   });
