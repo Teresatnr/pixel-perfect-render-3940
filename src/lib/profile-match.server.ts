@@ -47,7 +47,7 @@ export async function generarSintesisPerfil(consulta: string, signal?: AbortSign
 
   const result = streamText({
     model: provider.responses(MODEL),
-    abortSignal: signal,
+    ...(signal ? { abortSignal: signal } : {}),
     providerOptions: {
       openai: {
         store: false,
