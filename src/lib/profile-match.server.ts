@@ -56,10 +56,7 @@ export async function generarSintesisPerfil(consulta: string, signal?: AbortSign
         include: ["reasoning.encrypted_content"],
       },
     },
-    messages: [
-      {
-        role: "system",
-        content: `Eres el asistente de la web profesional de Teresa Nieto Ramírez. A partir del
+    system: `Eres el asistente de la web profesional de Teresa Nieto Ramírez. A partir del
 perfil o reto que describe un visitante (normalmente dirección de operaciones, recursos humanos
 o un cliente), redacta una síntesis de la experiencia de Teresa que sea relevante para esa
 necesidad concreta.
