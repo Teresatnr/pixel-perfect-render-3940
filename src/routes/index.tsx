@@ -38,9 +38,29 @@ export const Route = createFileRoute("/")({
           "Integro equipos para conseguir objetivos globales. Más de 20 años en operaciones multisite, gestión económica y relaciones laborales.",
       },
       { property: "og:type", content: "profile" },
+      { property: "og:url", content: "https://pixel-perfect-render-3940.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://pixel-perfect-render-3940.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Teresa Nieto Ramírez",
+          jobTitle: "Senior Facility Manager",
+          description:
+            "Más de 20 años liderando operaciones, equipos y contratos complejos en Facility Services.",
+          url: "https://pixel-perfect-render-3940.lovable.app/",
+          email: "mailto:terenira@hotmail.com",
+          telephone: "+34651300652",
+          knowsAbout: ["Facility Management", "Gestión multisite", "Relaciones laborales", "Gestión de contratos"],
+        }),
+      },
+    ],
   }),
+  staticData: { sitemap: true },
   component: Landing,
 });
 
