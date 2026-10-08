@@ -77,11 +77,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      {
+        title: "Teresa Nieto Ramírez · Senior Facility Manager | Liderazgo y gestión",
+      },
+      {
+        name: "description",
+        content:
+          "Más de 20 años liderando operaciones, equipos y contratos complejos en Facility Services. Perfil ejecutivo, resultados y gestión de personas.",
+      },
+      { name: "author", content: "Teresa Nieto Ramírez" },
+      {
+        property: "og:title",
+        content: "Teresa Nieto Ramírez · Senior Facility Manager | Liderazgo y gestión",
+      },
+      {
+        property: "og:description",
+        content:
+          "Más de 20 años liderando operaciones, equipos y contratos complejos en Facility Services. Perfil ejecutivo, resultados y gestión de personas.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
