@@ -25,13 +25,13 @@ import { generarSintesis } from "@/lib/profile-match.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Teresa Nieto Ramírez — Senior Facility Manager" },
+      { title: "Teresa Nieto Ramírez · Senior Facility Manager | Liderazgo y gestión" },
       {
         name: "description",
         content:
           "Más de 20 años liderando operaciones, equipos y contratos complejos en Facility Services. Perfil ejecutivo, resultados y gestión de personas.",
       },
-      { property: "og:title", content: "Teresa Nieto Ramírez — Senior Facility Manager" },
+      { property: "og:title", content: "Teresa Nieto Ramírez · Senior Facility Manager | Liderazgo y gestión" },
       {
         property: "og:description",
         content:
