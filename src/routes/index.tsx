@@ -126,6 +126,7 @@ const pillars = [
 function Landing() {
   const [open, setOpen] = useState(false);
   const [verCifras, setVerCifras] = useState(false);
+  const [habilidadAbierta, setHabilidadAbierta] = useState(0);
 
   return (
     <div className="min-h-screen bg-background">
