@@ -345,7 +345,7 @@ function Landing() {
         {/* LIDERAZGO */}
         <section className="border-y border-border bg-sand">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
-            <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary/60">
+            <p className="section-label font-semibold">
               Liderazgo
             </p>
             <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
