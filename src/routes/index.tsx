@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import {
   Users,
   ClipboardList,
@@ -16,11 +15,9 @@ import {
   Mail,
   Linkedin,
   ChevronDown,
-  Loader2,
   MessageCircle,
 } from "lucide-react";
 
-import { generarSintesis } from "@/lib/profile-match.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,85 +125,6 @@ const pillars = [
   { title: "Equipo", text: "Colaboración, comunicación y visión compartida." },
 ];
 
-function PerfilAMedida() {
-  const ejecutar = useServerFn(generarSintesis);
-  const [consulta, setConsulta] = useState("");
-  const [sintesis, setSintesis] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [cargando, setCargando] = useState(false);
-
-  const enviar = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (consulta.trim().length < 10 || cargando) return;
-    setCargando(true);
-    setError(null);
-    setSintesis(null);
-    try {
-      const res = await ejecutar({ data: { consulta: consulta.trim() } });
-      setSintesis(res.sintesis);
-    } catch {
-      setError("No se ha podido generar la síntesis ahora mismo. Inténtalo de nuevo en un momento.");
-    } finally {
-      setCargando(false);
-    }
-  };
-
-  return (
-    <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
-      <div>
-        <p className="section-label">Perfil a medida</p>
-        <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
-          ¿Qué perfil estás buscando?
-        </h2>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-          Describe la posición o el reto que tienes sobre la mesa y recibirás una síntesis de la
-          experiencia de Teresa relevante para ese caso.
-        </p>
-      </div>
-      <div>
-        <form onSubmit={enviar} className="space-y-4">
-          <textarea
-            value={consulta}
-            onChange={(e) => setConsulta(e.target.value)}
-            rows={4}
-            maxLength={800}
-            placeholder="Ej.: buscamos responsable para un contrato hospitalario multisite, con negociación sindical y control de P&L."
-            className="w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent md:text-base"
-          />
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="submit"
-              disabled={cargando || consulta.trim().length < 10}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-40"
-            >
-              {cargando && <Loader2 className="size-4 animate-spin" strokeWidth={1.5} />}
-              {cargando ? "Preparando síntesis…" : "Ver encaje"}
-            </button>
-            <span className="text-xs text-muted-foreground">
-              Generado automáticamente a partir de la trayectoria de Teresa.
-            </span>
-          </div>
-        </form>
-
-        {error && <p className="mt-6 text-sm text-destructive">{error}</p>}
-
-        {sintesis && (
-          <div className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6 text-sm leading-relaxed text-muted-foreground md:p-8 md:text-base">
-            {sintesis.split(/\n+/).map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-            <a
-              href="#contacto"
-              className="inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
-            >
-              Hablar con Teresa
-            </a>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 function Landing() {
   const [open, setOpen] = useState(false);
@@ -406,12 +324,6 @@ function Landing() {
           </div>
         </section>
 
-        {/* PERFIL A MEDIDA */}
-        <section id="perfil-a-medida" className="border-y border-border bg-sand">
-          <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-28">
-            <PerfilAMedida />
-          </div>
-        </section>
 
         {/* LIDERAZGO */}
         <section className="bg-blush">
