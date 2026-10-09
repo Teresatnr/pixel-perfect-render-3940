@@ -351,8 +351,8 @@ function Landing() {
             <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
               Mi forma de liderar
             </h2>
-            <p className="mt-6 max-w-3xl text-xl font-light leading-snug text-primary/80 md:mt-8 md:text-3xl">
-              «Liderar es, para mí, escuchar, generar confianza, asumir responsabilidades y
+            <p className="mt-6 max-w-3xl text-lg font-light leading-snug text-primary/80 md:mt-8 md:text-2xl">
+              «Liderar, para mí es escuchar, generar confianza, asumir responsabilidades y
               conseguir que diferentes personas trabajen alineadas hacia un objetivo común.»
             </p>
             <div className="mt-10 rounded-2xl bg-card p-6 shadow-sm md:mt-14 md:p-10">
