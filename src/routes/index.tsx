@@ -442,13 +442,6 @@ function Landing() {
           © {new Date().getFullYear()} Teresa Nieto Ramírez · Senior Facility Manager
         </p>
       </footer>
-
-      <a
-        href="#contacto"
-        className="fixed bottom-5 right-5 z-50 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg transition-opacity hover:opacity-90 md:hidden"
-      >
-        Contactar
-      </a>
     </div>
   );
 }
