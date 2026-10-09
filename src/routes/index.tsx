@@ -133,7 +133,7 @@ function Landing() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-6">
           <a href="#inicio" className="text-sm font-medium tracking-[0.18em] uppercase text-primary">
-            Teresa Nieto
+            Teresa Nieto Ramírez
           </a>
           <nav className="hidden items-center gap-8 md:flex">
             {nav.map((item) => (
@@ -180,11 +180,8 @@ function Landing() {
         {/* HERO */}
         <section id="inicio" className="border-b border-border bg-sand">
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-6 md:py-40">
-            <p className="text-lg leading-tight font-medium uppercase tracking-[0.12em] text-accent sm:text-xl md:text-2xl">
+            <h1 className="text-lg leading-tight font-medium uppercase tracking-[0.12em] text-accent sm:text-xl md:text-2xl">
               Senior Facility Manager
-            </p>
-            <h1 className="mt-3 max-w-4xl text-xl text-primary sm:text-2xl md:mt-4 md:text-4xl">
-              Teresa Nieto Ramírez
             </h1>
             <p className="mt-8 max-w-3xl text-[1.6rem] font-light leading-snug text-ink sm:text-3xl md:mt-10 md:text-4xl">
               «Integro equipos para conseguir objetivos globales.»
