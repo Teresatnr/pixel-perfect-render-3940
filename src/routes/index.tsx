@@ -11,11 +11,9 @@ import {
   Compass,
   Menu,
   X,
-  Phone,
   Mail,
   Linkedin,
   ChevronDown,
-  MessageCircle,
 } from "lucide-react";
 
 
@@ -51,7 +49,6 @@ export const Route = createFileRoute("/")({
             "Más de 20 años liderando operaciones, equipos y contratos complejos en Facility Services.",
           url: "https://pixel-perfect-render-3940.lovable.app/",
           email: "mailto:terenira@hotmail.com",
-          telephone: "+34651300652",
           knowsAbout: ["Facility Management", "Gestión multisite", "Relaciones laborales", "Gestión de contratos"],
         }),
       },
@@ -283,14 +280,6 @@ function Landing() {
 
             <div className="mt-8 flex flex-wrap gap-3 md:mt-10">
               <a
-                href="https://wa.me/34651300652"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-              >
-                <MessageCircle className="size-4" strokeWidth={1.5} /> WhatsApp
-              </a>
-              <a
                 href="mailto:terenira@hotmail.com"
                 className="inline-flex items-center gap-2 rounded-full border border-primary/25 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/5"
               >
@@ -391,9 +380,6 @@ function Landing() {
               Encantada de intercambiar impresiones sobre proyectos y retos de gestión.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 text-[0.95rem] text-primary md:mt-10 md:text-base">
-              <a href="tel:+34651300652" className="flex items-center gap-2 hover:text-accent">
-                <Phone className="size-4" strokeWidth={1.5} /> 651 300 652
-              </a>
               <a
                 href="mailto:terenira@hotmail.com"
                 className="flex items-center gap-2 hover:text-accent"
@@ -407,12 +393,6 @@ function Landing() {
                 className="rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Enviar email
-              </a>
-              <a
-                href="tel:+34651300652"
-                className="rounded-full border border-primary/25 px-7 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/5"
-              >
-                Llamar
               </a>
               <a
                 href="https://www.linkedin.com"
