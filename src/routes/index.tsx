@@ -126,6 +126,7 @@ const pillars = [
 function Landing() {
   const [open, setOpen] = useState(false);
   const [verCifras, setVerCifras] = useState(false);
+  const [habilidadAbierta, setHabilidadAbierta] = useState(0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -295,21 +296,48 @@ function Landing() {
           <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
             Lo que aporto
           </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-14 md:gap-6">
-            {skills.map((s) => (
-              <div
-                key={s.title}
-                className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-accent/50 md:p-7"
-              >
-                <s.icon className="size-5 text-accent" strokeWidth={1.5} />
-                <h3 className="mt-4 text-base leading-snug text-primary md:mt-5 md:text-lg">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:mt-3">
-                  {s.text}
-                </p>
-              </div>
-            ))}
+          <div className="mt-8 border-t border-border md:mt-14">
+            {skills.map((s, i) => {
+              const abierta = habilidadAbierta === i;
+              return (
+                <div key={s.title} className="border-b border-border">
+                  <button
+                    type="button"
+                    aria-expanded={abierta}
+                    aria-controls={`habilidad-${i}`}
+                    onClick={() => setHabilidadAbierta(abierta ? -1 : i)}
+                    className="group flex w-full items-center gap-4 py-5 text-left transition-colors md:py-6"
+                  >
+                    <s.icon
+                      className="size-5 shrink-0 text-accent transition-colors group-hover:text-primary"
+                      strokeWidth={1.5}
+                    />
+                    <span className="flex-1 text-base leading-snug text-primary transition-colors group-hover:text-accent md:text-lg">
+                      {s.title}
+                    </span>
+                    <ChevronDown
+                      className={`size-4 shrink-0 text-primary/45 transition-transform duration-300 ease-out ${
+                        abierta ? "rotate-180" : ""
+                      }`}
+                      strokeWidth={1.5}
+                    />
+                  </button>
+                  <div
+                    id={`habilidad-${i}`}
+                    aria-hidden={!abierta}
+                    className={`grid transition-all duration-300 ease-out ${
+                      abierta ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-3xl pb-6 pl-9 text-sm leading-relaxed text-muted-foreground md:pb-8 md:text-base">
+                        {s.text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
