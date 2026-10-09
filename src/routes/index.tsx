@@ -253,7 +253,7 @@ function Landing() {
               type="button"
               onClick={() => setVerCifras((v) => !v)}
               aria-expanded={verCifras}
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-primary/25 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/5 md:mt-10"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-medium text-primary shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-lg hover:shadow-primary/10 md:mt-10"
             >
               {verCifras ? "Ocultar cifras" : "Ver cifras de impacto"}
               <ChevronDown
