@@ -184,7 +184,7 @@ function Landing() {
               Senior Facility Manager
             </h1>
             <p className="mt-8 max-w-3xl text-[1.6rem] font-light leading-snug text-ink sm:text-3xl md:mt-10 md:text-4xl">
-              «Integro equipos para conseguir objetivos globales.»
+              Integro equipos para conseguir objetivos globales.
             </p>
             <p className="mt-5 max-w-2xl text-[0.95rem] leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
               Más de 20 años liderando operaciones, equipos y contratos complejos, combinando
