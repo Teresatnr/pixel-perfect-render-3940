@@ -352,8 +352,8 @@ function Landing() {
               Mi forma de liderar
             </h2>
             <p className="mt-6 max-w-3xl text-lg font-light leading-snug text-primary/80 md:mt-8 md:text-2xl">
-              «Liderar, para mí es escuchar, generar confianza, asumir responsabilidades y
-              conseguir que diferentes personas trabajen alineadas hacia un objetivo común.»
+              Escuchar, generar confianza, asumir responsabilidades y conseguir que diferentes
+              personas trabajen alineadas hacia un objetivo común.
             </p>
             <div className="mt-10 rounded-2xl bg-card p-6 shadow-sm md:mt-14 md:p-10">
               <div className="grid gap-8 sm:grid-cols-3 md:gap-10">
