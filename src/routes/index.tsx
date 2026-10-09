@@ -343,7 +343,7 @@ function Landing() {
 
 
         {/* LIDERAZGO */}
-        <section className="bg-blush">
+        <section className="border-y border-border bg-sand">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
             <p className="text-xs font-medium tracking-[0.22em] uppercase text-primary/60">
               Liderazgo
