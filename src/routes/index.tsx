@@ -296,17 +296,17 @@ function Landing() {
           <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
             Lo que aporto
           </h2>
-          <div className="mt-8 border-t border-border md:mt-14">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm md:mt-14">
             {skills.map((s, i) => {
               const abierta = habilidadAbierta === i;
               return (
-                <div key={s.title} className="border-b border-border">
+                <div key={s.title} className={i === 0 ? "" : "border-t border-border"}>
                   <button
                     type="button"
                     aria-expanded={abierta}
                     aria-controls={`habilidad-${i}`}
                     onClick={() => setHabilidadAbierta(abierta ? -1 : i)}
-                    className="group flex w-full items-center gap-4 py-5 text-left transition-colors md:py-6"
+                    className="group flex w-full items-center gap-4 px-5 py-5 text-left transition-colors md:px-8 md:py-6"
                   >
                     <s.icon
                       className="size-5 shrink-0 text-accent transition-colors group-hover:text-primary"
@@ -330,7 +330,7 @@ function Landing() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-3xl pb-6 pl-9 text-sm leading-relaxed text-muted-foreground md:pb-8 md:text-base">
+                      <p className="max-w-3xl px-5 pb-6 pl-14 text-sm leading-relaxed text-muted-foreground md:px-8 md:pb-8 md:pl-[4.25rem]">
                         {s.text}
                       </p>
                     </div>
