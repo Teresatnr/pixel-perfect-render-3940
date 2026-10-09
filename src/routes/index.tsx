@@ -326,7 +326,7 @@ function Landing() {
         </section>
 
         {/* EXPERIENCIA */}
-        <section id="experiencia" className="border-y border-border bg-secondary">
+        <section id="experiencia" className="border-y border-border bg-sand">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
             <p className="section-label">Impacto</p>
             <h2 className="mt-3 max-w-2xl text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
