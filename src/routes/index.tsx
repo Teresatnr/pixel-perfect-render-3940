@@ -355,13 +355,15 @@ function Landing() {
               «Liderar es, para mí, escuchar, generar confianza, asumir responsabilidades y
               conseguir que diferentes personas trabajen alineadas hacia un objetivo común.»
             </p>
-            <div className="mt-10 grid gap-8 sm:grid-cols-3 md:mt-14 md:gap-10">
-              {pillars.map((p) => (
-                <div key={p.title} className="border-t border-primary/20 pt-5 md:pt-6">
-                  <h3 className="text-lg text-primary md:text-xl">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-primary/70">{p.text}</p>
-                </div>
-              ))}
+            <div className="mt-10 rounded-2xl bg-card p-6 shadow-sm md:mt-14 md:p-10">
+              <div className="grid gap-8 sm:grid-cols-3 md:gap-10">
+                {pillars.map((p) => (
+                  <div key={p.title} className="border-t border-primary/20 pt-5 md:pt-6">
+                    <h3 className="text-lg font-bold text-primary md:text-xl">{p.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-primary/70">{p.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
