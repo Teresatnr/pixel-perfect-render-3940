@@ -402,22 +402,15 @@ function Landing() {
               Formación
             </h2>
 
-            <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
-              <div className="flex items-center md:items-start">
-                <div className="w-full rounded-2xl bg-card p-8 shadow-sm md:p-10">
+            <div className="mt-8 max-w-3xl md:mt-12">
+              <div className="space-y-5 text-[0.95rem] leading-relaxed text-muted-foreground md:space-y-6 md:text-lg">
+                <div>
                   <img
                     src={eoiLogo.url}
                     alt="Escuela de Organización Industrial (EOI)"
-                    className="h-auto w-full max-w-[260px]"
+                    title="Escuela de Organización Industrial"
+                    className="h-6 w-auto md:h-7"
                   />
-                </div>
-              </div>
-
-              <div className="space-y-5 text-[0.95rem] leading-relaxed text-muted-foreground md:space-y-6 md:text-lg">
-                <div>
-                  <p className="text-base font-semibold text-primary md:text-lg">
-                    Escuela de Organización Industrial · EOI
-                  </p>
                   <p className="mt-2 text-lg font-light leading-snug text-primary md:text-2xl">
                     Máster Desarrollo para la Dirección de Mujeres con alto potencial
                   </p>
