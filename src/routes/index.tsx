@@ -414,10 +414,10 @@ function Landing() {
                   <p className="mt-2 text-lg font-light leading-snug text-primary md:text-2xl">
                     Máster Desarrollo para la Dirección de Mujeres con alto potencial
                   </p>
-                  <p className="mt-1 text-sm text-muted-foreground md:text-base">33ª Edición</p>
+                  <p className="mt-1 text-sm text-muted-foreground md:text-base">33ª Edición · Noviembre 2026</p>
                 </div>
                 <p className="border-t border-border pt-5 text-sm text-muted-foreground/80 md:pt-6">
-                  Relaciones Laborales — Universidad Complutense de Madrid
+                  Relaciones Laborales — Universidad Complutense de Madrid, 2004
                 </p>
               </div>
             </div>
