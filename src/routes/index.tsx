@@ -15,6 +15,7 @@ import {
   Linkedin,
   ChevronDown,
 } from "lucide-react";
+import eoiLogo from "@/assets/logo-eoi.png.asset.json";
 
 
 export const Route = createFileRoute("/")({
@@ -389,9 +390,43 @@ function Landing() {
                 organizaciones complejas, donde calidad, eficiencia, personas y continuidad del
                 servicio deben funcionar de manera coordinada.
               </p>
-              <p className="border-t border-border pt-5 text-sm text-muted-foreground/80 md:pt-6">
-                Formación en Relaciones Laborales — Universidad Complutense de Madrid
-              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FORMACIÓN */}
+        <section className="border-y border-border bg-sand">
+          <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-32">
+            <p className="section-label">Formación</p>
+            <h2 className="mt-3 text-[1.75rem] leading-tight text-primary md:mt-4 md:text-5xl">
+              Formación
+            </h2>
+
+            <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
+              <div className="flex items-center md:items-start">
+                <div className="w-full rounded-2xl bg-card p-8 shadow-sm md:p-10">
+                  <img
+                    src={eoiLogo.url}
+                    alt="Escuela de Organización Industrial (EOI)"
+                    className="h-auto w-full max-w-[260px]"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-5 text-[0.95rem] leading-relaxed text-muted-foreground md:space-y-6 md:text-lg">
+                <div>
+                  <p className="text-base font-semibold text-primary md:text-lg">
+                    Escuela de Organización Industrial · EOI
+                  </p>
+                  <p className="mt-2 text-lg font-light leading-snug text-primary md:text-2xl">
+                    Máster Desarrollo para la Dirección de Mujeres con alto potencial
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground md:text-base">33ª Edición</p>
+                </div>
+                <p className="border-t border-border pt-5 text-sm text-muted-foreground/80 md:pt-6">
+                  Relaciones Laborales — Universidad Complutense de Madrid
+                </p>
+              </div>
             </div>
           </div>
         </section>
